@@ -6,7 +6,7 @@ execute:
   warning: false
   message: false
 ---
-
+In this project, I employed linear regression models to predict life expectancy, the outcome variable, based on several key socio-economic and environmental factors. The predictor variables included a composite index measuring human development, a metric indicating the annual carbon dioxide emissions per person, and the average income of a country's residents. The linear regression approach was chosen because it allows us to quantify the relationship between these continuous predictor variables and life expectancy, providing clear and interpretable estimates of how changes in each predictor are associated with changes in the expected lifespan of individuals within different countries. For instance, we assessed how improvements in human development, reductions in carbon dioxide emissions, and increases in average income influence life expectancy, yielding insights into the broader impacts of socio-economic and environmental policies on public health outcomes.
 ```{r}
 library(ggplot2)
 library(dplyr)
@@ -68,4 +68,12 @@ tbl_gni
 
 \begin{equation}
 \text{Life Expectancy} = \beta_0 + \beta_1 \times \text{Human Development Index} + \epsilon
+\end{equation}
+
+\begin{equation}
+\text{Life Expectancy} = \beta_0 + \beta_1 \times \text{CO2 Production} + \epsilon
+\end{equation}
+
+\begin{equation}
+\text{Life Expectancy} = \beta_0 + \beta_1 \times \text{Gross National Income per Capita} + \epsilon
 \end{equation}

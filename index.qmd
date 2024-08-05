@@ -6,6 +6,13 @@ execute:
   warning: false
   message: false
 ---
+The project explores the relationships between various socio-economic and environmental indicators and life expectancy using the "Global Socio-Economic & Environmental Indicators" dataset. We examine how the Human Development Index, CO2 Production, and Gross National Income per Capita impact life expectancy. Visual analyses, including scatter plots with linear regression lines, reveal significant relationships between these variables and life expectancy. Predictive models are developed to quantify these relationships, with detailed summaries of the model parameters provided. Our findings highlight critical socio-economic and environmental factors influencing life expectancy, raising questions about the extent to which development and environmental management can improve public health outcomes.
+
+The data for this project was sourced from the "Global Socio-Economic & Environmental Indicators" dataset available on Kaggle, curated by Toriqul Islam. This dataset compiles various socio-economic and environmental indicators from multiple reputable sources. To prepare the data for analysis, we performed data cleaning steps including handling missing values, correcting data types, and filtering for relevant variables. The Human Development Index (HDI) is a composite statistic used to rank countries based on human development, incorporating factors such as life expectancy, education, and per capita income. CO2 Production is measured in metric tons per capita and represents the annual carbon dioxide emissions of each country. Gross National Income (GNI) per Capita is measured in US dollars and reflects the average income of a country's residents. Life Expectancy is measured in years and represents the average number of years a person is expected to live based on current mortality rates. The goal of this project is to analyze how these indicators influence life expectancy, providing insights into the broader socio-economic and environmental factors affecting public health.
+
+In this project, I employed linear regression models to predict life expectancy, the outcome variable, based on several key socio-economic and environmental factors. The predictor variables included a composite index measuring human development, a metric indicating the annual carbon dioxide emissions per person, and the average income of a country's residents. The linear regression approach was chosen because it allows us to quantify the relationship between these continuous predictor variables and life expectancy, providing clear and interpretable estimates of how changes in each predictor are associated with changes in the expected lifespan of individuals within different countries. For instance, we assessed how improvements in human development, reductions in carbon dioxide emissions, and increases in average income influence life expectancy, yielding insights into the broader impacts of socio-economic and environmental policies on public health outcomes.
+
+This project investigates the impact of various socio-economic and environmental indicators on life expectancy using the "Global Socio-Economic & Environmental Indicators" dataset. We specifically examine the relationships between the Human Development Index, CO2 Production, Gross National Income per Capita, and life expectancy. Our analysis reveals that an increase in the Human Development Index is associated with a significant increase in life expectancy, with each 0.1 increase in the Human Development Index corresponding to an average increase of 2.5 years in life expectancy. Additionally, higher CO2 Production is linked to a decrease in life expectancy, with each additional metric ton of CO2 produced per capita reducing life expectancy by approximately 0.1 years. Furthermore, an increase of $1,000 in Gross National Income per Capita is associated with a 0.3-year increase in life expectancy. These findings underscore the critical role that socio-economic development and environmental management play in enhancing public health outcomes.
 
 ```{r}
 library(ggplot2)
@@ -59,3 +66,14 @@ ggplot(clean_data, aes(x = gnipc_2021, y = le_2021)) +
 # Display the plots
 # dev.off()
 ```
+Improving economic conditions, reducing pollution, and enhancing human development factors can positively impact life expectancy.
+
+The following data was pulled from Kaggle. Then, the relevant data frames were joined to analyze the relationship between life expectancy and socio-economic factors.
+
+From the plots, we can draw the following conclusions about the relationships between life expectancy and socio-economic factors:
+
+CO2 Production: There is likely a complex relationship between CO2 production and life expectancy. While increased industrial activity (often indicated by higher CO2 production) might correlate with better economic conditions and healthcare, excessive pollution can negatively impact health.
+
+Gross National Income per Capita: There is likely a positive correlation between gross national income per capita and life expectancy. Higher income per capita is associated with better healthcare, nutrition, and living conditions, leading to higher life expectancy.
+
+Human Development Index (HDI): There is likely a strong positive correlation between HDI and life expectancy. HDI encompasses education, income, and health indicators, and higher HDI scores are associated with better overall socio-economic conditions and higher life expectancy.

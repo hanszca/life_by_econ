@@ -8,8 +8,8 @@ I’m Hans Zhang.
 
 My email is: emeraldgreenca@gmail.com
 
-My project is [Explore relationships between life expectancy and socio-economic factor
-](https://github.com/hanszca/life-econ)
+My project is [Life expectancy by socio-economic factors
+](https://github.com/hanszca/life_by_econ)
 
 [This project was created as a part of Kane’s Data Science Bootcamp.](https://bootcamp.davidkane.info)
 
