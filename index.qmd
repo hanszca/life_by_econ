@@ -1,0 +1,61 @@
+---
+title: "Life expectancy by socio-economic factors"
+format: html
+execute: 
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(gtsummary)
+library(broom)
+library(readr)
+
+# The following data was pulled from Kaggle
+# Import the datasets
+co2 <- read_csv("data/co2_production.csv")
+gni <- read_csv("data/gross_national_income_per_capital.csv")
+hdi <- read_csv("data/human_development_index.csv")
+life_expectancy <- read_csv("data/life_expectancy_by_birth.csv")
+
+# Explore the datasets
+# str(co2)
+# str(gni)
+# str(hdi)
+# str(life_expectancy)
+
+# Merge the datasets on the common identifier (assuming "Country" is the common columns)
+merged_data <- life_expectancy %>%
+  inner_join(co2, by = c("Country")) %>%
+  inner_join(gni, by = c("Country")) %>%
+  inner_join(hdi, by = c("Country"))
+
+# Handle missing values (e.g., by removing rows with NA values)
+clean_data <- na.omit(merged_data)
+
+# Plot relationships
+
+# Life Expectancy vs Human Development Index
+ggplot(clean_data, aes(x = hdi_2021, y = le_2021)) +
+  geom_point() +
+  geom_smooth(method = "lm", col = "red") +
+  labs(title = "Life Expectancy vs Human Development Index", x = "Human Development Index", y = "Life Expectancy (years)")
+
+# Life Expectancy vs CO2 Production
+ggplot(clean_data, aes(x = co2_prod_2021, y = le_2021)) +
+  geom_point() +
+  geom_smooth(method = "lm", col = "red") +
+  labs(title = "Life Expectancy vs CO2 Production", x = "CO2 Production (metric tons per capita)", y = "Life Expectancy (years)")
+
+# Life Expectancy vs Gross National Income per Capita
+ggplot(clean_data, aes(x = gnipc_2021, y = le_2021)) +
+  geom_point() +
+  geom_smooth(method = "lm", col = "red") +
+  labs(title = "Life Expectancy vs Gross National Income per Capita", x = "Gross National Income per Capita (USD)", y = "Life Expectancy (years)")
+
+# Display the plots
+# dev.off()
+```

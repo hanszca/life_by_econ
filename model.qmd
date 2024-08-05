@@ -1,0 +1,71 @@
+---
+title: "model"
+format: html
+execute: 
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(gtsummary)
+library(broom)
+library(readr)
+
+# The following data was pulled from Kaggle
+# Import the datasets
+co2 <- read_csv("data/co2_production.csv")
+gni <- read_csv("data/gross_national_income_per_capital.csv")
+hdi <- read_csv("data/human_development_index.csv")
+life_expectancy <- read_csv("data/life_expectancy_by_birth.csv")
+
+# Explore the datasets
+# str(co2)
+# str(gni)
+# str(hdi)
+# str(life_expectancy)
+
+# Merge the datasets on the common identifier (assuming "Country" is the common columns)
+merged_data <- life_expectancy %>%
+  inner_join(co2, by = c("Country")) %>%
+  inner_join(gni, by = c("Country")) %>%
+  inner_join(hdi, by = c("Country"))
+
+# Handle missing values (e.g., by removing rows with NA values)
+clean_data <- na.omit(merged_data)
+
+# Model 1: Human Development Index
+model_hdi <- lm(le_2021 ~ hdi_2021, data = clean_data)
+summary(model_hdi)
+
+# Model 2: CO2 Production
+model_co2 <- lm(le_2021 ~ co2_prod_2021, data = clean_data)
+summary(model_co2)
+
+# Model 3: Gross National Income per Capita
+model_gni <- lm(le_2021 ~ gnipc_2021, data = clean_data)
+summary(model_gni)
+
+# Human Development Index model summary
+tbl_hdi <- tbl_regression(model_hdi, intercept = TRUE) %>%
+  add_glance_source_note()
+
+# CO2 Production model summary
+tbl_co2 <- tbl_regression(model_co2, intercept = TRUE) %>%
+  add_glance_source_note()
+
+# Gross National Income per Capita model summary
+tbl_gni <- tbl_regression(model_gni, intercept = TRUE) %>%
+  add_glance_source_note()
+
+# Display the tables
+tbl_hdi
+tbl_co2
+tbl_gni
+```
+
+\begin{equation}
+\text{Life Expectancy} = \beta_0 + \beta_1 \times \text{Human Development Index} + \epsilon
+\end{equation}

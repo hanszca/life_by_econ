@@ -1,0 +1,19 @@
+---
+title: "Sources"
+format: html
+---
+**Global Socio-Economic & Environmental Indicators**
+
+[https://www.kaggle.com/datasets/toriqulstu/global-socio-economic-and-environmental-indicators/data](https://www.kaggle.com/datasets/toriqulstu/global-socio-economic-and-environmental-indicators/data)
+
+The following datasets was pulled from Kaggle:
+co2_production.csv, 
+gross_national_income_per_capital.csv, 
+human_development_index.csv, 
+life_expectancy_by_birth.csv 
+
+Then, the relevant data frames were joined to analyze the relationship between life expectancy and socio-economic factors.
+
+I merged the datasets on the common identifier (assuming "Country" is the common columns).
+
+I handled missing values (e.g., by removing rows with NA values).
